@@ -7,80 +7,100 @@ android:layout_height="match_parent"
 tools:context=".MainActivity">
 
 <!-- Top bar -->
-<RelativeLayout
-    android:id="@+id/top_bar"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:background="#FFA500">
+    <RelativeLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:background="#FF7C15">
 
-    <TextView
-        android:id="@+id/top_bar_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:text="To-Do App"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/top_bar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="To-Do App"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
-</RelativeLayout>
+    </RelativeLayout>
 
 <!-- Middle bar -->
     <RelativeLayout
         android:id="@+id/middle_bar"
         android:layout_width="match_parent"
-        android:layout_height="586dp"
-        android:layout_below="@+id/top_bar">
+        android:layout_height="584dp"
+        android:layout_below="@+id/top_bar"
+        android:layout_marginTop="0dp"
+        android:background="#5B5957"
+        >
 
         <!-- Add your activity here -->
-        <Button
+        <!-- <Button
             android:id="@+id/square_button"
             android:layout_width="74dp"
             android:layout_height="70dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="22dp"
-            android:layout_marginBottom="38dp"
-            android:background="#FFA500"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="22dp"
+            android:backgroundTint="#FF7C15"
             android:text="+"
-            android:textSize="30dp" />
+            android:textSize="30dp" /> -->
+        <ListView
+            android:layout_width="374dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="17dp"
+            android:background="#FFFFFF"
+            />
     </RelativeLayout>
 
 <!-- Bottom bar navigation -->
-<RelativeLayout
-    android:id="@+id/bottom_bar"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_alignParentBottom="true"
-    android:background="#FFFFFF">
+    <RelativeLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF">
 
-    <ImageView
-        android:id="@+id/icon1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/icon1" />
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/icon2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/icon2" />
+            <ImageView
+                android:id="@+id/hamburgerIcon"
+                android:layout_width="81dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_currenttasks" />
 
-    <ImageView
-        android:id="@+id/icon3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/icon3" />
+        </RelativeLayout>
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/icon2"
+            android:layout_width="61dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_launcher_foreground" />
+
+        <ImageView
+            android:id="@+id/icon3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_launcher_foreground" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayout"
+            android:layout_marginTop="-3dp"
+            android:text="Current Tasks" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
