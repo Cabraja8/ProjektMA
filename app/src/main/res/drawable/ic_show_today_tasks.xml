@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@android:color/holo_green_light" />
+    <item android:drawable="@drawable/ic_calendar"
+        android:gravity="center"/>
+    <item
+        android:gravity="bottom|center_horizontal">
+        <shape
+            android:shape="rectangle">
+            <size android:height="20dp"/>
+        </shape>
+    </item>
+    <item
+        android:gravity="bottom|center_horizontal">
+        <bitmap
+            android:src="@drawable/ic_calendar"
+            android:gravity="center"/>
+    </item>
+    <item
+        android:gravity="bottom|center_horizontal">
+        <bitmap
+            android:gravity="center"
+            android:src="@android:color/white"/>
+    </item>
+    <item
+        android:gravity="bottom|center_horizontal">
+        <bitmap
+            android:gravity="center"
+            android:src="@android:color/transparent"/>
+    </item>
+</layer-list>
