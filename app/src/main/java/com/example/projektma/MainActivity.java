@@ -20,17 +20,17 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        ReplaceFragment(new AllTasks());
+        ReplaceFragment(new TaskList());
         binding.bottomNavigationView.setOnItemSelectedListener(item ->{
 
             int itemId = item.getItemId();
 
             if (itemId == R.id.AllTasks) {
-                ReplaceFragment(new AllTasks());
+                ReplaceFragment(new TaskList());
             } else if (itemId == R.id.Today) {
-                ReplaceFragment(new TodaysTasks());
+                ReplaceFragment(new AddTask());
             } else if (itemId == R.id.Create) {
-                ReplaceFragment(new CreateTasks());
+                ReplaceFragment(new Completed_tasks());
             }
 
             return true;

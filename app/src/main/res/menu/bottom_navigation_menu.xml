@@ -4,22 +4,22 @@
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="All Tasks"
+        android:title="Task List"
         android:icon="@drawable/baseline_home_24"
         android:id="@+id/AllTasks"
         />
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Today's tasks"
-        android:icon="@drawable/baseline_airport_shuttle_24"
+        android:title="Add Task"
+        android:icon="@drawable/baseline_add_24"
         android:id="@+id/Today"
         />
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Create task"
-        android:icon="@drawable/baseline_add_24"
+        android:title="Completed"
+        android:icon="@drawable/baseline_add_task_24"
         android:id="@+id/Create"
         />
 </menu>

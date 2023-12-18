@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <!-- Toolbar with Back/Cancel -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="?attr/actionBarTheme"
+            android:titleTextColor="@android:color/white"
+            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+        <!-- Task Creation Form Elements -->
+        <EditText
+            android:id="@+id/editTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Task Title"/>
+
+        <EditText
+            android:id="@+id/editTextDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Task Description"/>
+        <TextView
+            android:id="@+id/textViewDueDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Due Date"/>
+
+        <Button
+            android:id="@+id/buttonPickDueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick Due Date"/>
+
+        <!-- Priority Spinner -->
+        <Spinner
+            android:id="@+id/spinnerPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pick"/>
+
+        <!-- Add more UI elements as needed (due date, priority, etc.) -->
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/buttonSaveTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save Task"/>
+
+    </LinearLayout>
+
+</LinearLayout>

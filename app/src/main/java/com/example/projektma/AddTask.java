@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TodaysTasks#newInstance} factory method to
+ * Use the {@link AddTask#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TodaysTasks extends Fragment {
+public class AddTask extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class TodaysTasks extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public TodaysTasks() {
+    public AddTask() {
         // Required empty public constructor
     }
 
@@ -37,8 +37,8 @@ public class TodaysTasks extends Fragment {
      * @return A new instance of fragment TodaysTasks.
      */
     // TODO: Rename and change types and number of parameters
-    public static TodaysTasks newInstance(String param1, String param2) {
-        TodaysTasks fragment = new TodaysTasks();
+    public static AddTask newInstance(String param1, String param2) {
+        AddTask fragment = new AddTask();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +59,6 @@ public class TodaysTasks extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_todays_tasks, container, false);
+        return inflater.inflate(R.layout.fragment_add_task, container, false);
     }
 }
