@@ -15,11 +15,20 @@
         android:titleTextColor="@android:color/white"
         android:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <!-- ListView -->
-    <ListView
-        android:id="@+id/listViewTasks"
+    <!-- FrameLayout to add a frame around the ListView -->
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:layout_margin="8dp"
+        android:background="@android:color/darker_gray">
+
+        <!-- ListView -->
+        <ListView
+            android:id="@+id/listViewTasks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"/>
+    </FrameLayout>
 
 </LinearLayout>

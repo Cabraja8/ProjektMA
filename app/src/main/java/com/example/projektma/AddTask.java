@@ -1,12 +1,16 @@
 package com.example.projektma;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +23,13 @@ public class AddTask extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+
+    private EditText editTaskTitle;
+    private EditText editTaskDescription;
+    private CheckBox checkBoxCompleted;
+    private Button buttonPickDueDate;
+    private Button buttonCreateTask;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -54,11 +65,44 @@ public class AddTask extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_task, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_task, container, false);
+
+        editTaskTitle = view.findViewById(R.id.editTaskTitle);
+        editTaskDescription = view.findViewById(R.id.editTaskDescription);
+        checkBoxCompleted = view.findViewById(R.id.checkBoxCompleted);
+        buttonPickDueDate = view.findViewById(R.id.buttonPickDueDate);
+        buttonCreateTask = view.findViewById(R.id.buttonCreateTask);
+
+        // Set up onClick listener for buttonPickDueDate
+        buttonPickDueDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle buttonPickDueDate click (e.g., show date picker)
+                showDatePickerDialog();
+            }
+        });
+        buttonCreateTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle buttonCreateTask click (e.g., save task)
+                createTask();
+            }
+        });
+
+
+
+        return view;
+    }
+
+    private void showDatePickerDialog() {
+        // Implement your logic to show date picker
+    }
+
+    private void createTask() {
+        // Implement your logic to create a task
     }
 }

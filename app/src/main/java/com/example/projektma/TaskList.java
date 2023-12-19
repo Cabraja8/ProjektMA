@@ -7,7 +7,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.widget.Toolbar;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link TaskList#newInstance} factory method to
@@ -56,9 +59,22 @@ public class TaskList extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_task_list, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_task_list, container, false);
+
+        // Set up your Toolbar
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+
+        // Set up your ListView
+        ListView listView = view.findViewById(R.id.listViewTasks);
+
+        // Example data for the ListView
+        String[] exampleItems = {"Task 1", "Task 2", "Task 3"};
+
+        // Use an ArrayAdapter to populate the ListView with example data
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, exampleItems);
+        listView.setAdapter(adapter);
+
+        return view;
     }
 }
