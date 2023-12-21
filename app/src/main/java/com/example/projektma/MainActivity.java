@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
             int itemId = item.getItemId();
 
-            if (itemId == R.id.AllTasks) {
+            if (itemId == R.id.TaskList) {
                 ReplaceFragment(new TaskList());
-            } else if (itemId == R.id.Today) {
+            } else if (itemId == R.id.AddTask) {
                 ReplaceFragment(new AddTask());
-            } else if (itemId == R.id.Create) {
+            } else if (itemId == R.id.Completed) {
                 ReplaceFragment(new Completed_tasks());
             }
 

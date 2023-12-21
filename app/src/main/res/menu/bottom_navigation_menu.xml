@@ -6,20 +6,20 @@
         android:layout_height="wrap_content"
         android:title="Task List"
         android:icon="@drawable/baseline_home_24"
-        android:id="@+id/AllTasks"
+        android:id="@+id/TaskList"
         />
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Add Task"
         android:icon="@drawable/baseline_add_24"
-        android:id="@+id/Today"
+        android:id="@+id/AddTask"
         />
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Completed"
         android:icon="@drawable/baseline_add_task_24"
-        android:id="@+id/Create"
+        android:id="@+id/Completed"
         />
 </menu>

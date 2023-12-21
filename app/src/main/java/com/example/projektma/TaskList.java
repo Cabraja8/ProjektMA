@@ -9,8 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.widget.Toolbar;
+
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link TaskList#newInstance} factory method to
@@ -20,6 +27,10 @@ public class TaskList extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+    private ListView listViewTasks;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> taskTitles;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -49,6 +60,7 @@ public class TaskList extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,19 +74,48 @@ public class TaskList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_task_list, container, false);
 
-        // Set up your Toolbar
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        // Retrieve the ListView from the layout
+        listViewTasks = view.findViewById(R.id.listViewTasks);
 
-        // Set up your ListView
-        ListView listView = view.findViewById(R.id.listViewTasks);
+        // Sample data for the list (replace this with your actual data)
+        taskTitles = new ArrayList<>();
+        taskTitles.add("Task 1");
+        taskTitles.add("Task 2");
+        taskTitles.add("Task 3");
 
-        // Example data for the ListView
-        String[] exampleItems = {"Task 1", "Task 2", "Task 3"};
+        // Create an ArrayAdapter to populate the ListView
+        adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, taskTitles);
 
-        // Use an ArrayAdapter to populate the ListView with example data
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, exampleItems);
-        listView.setAdapter(adapter);
+        // Set the adapter for the ListView
+        listViewTasks.setAdapter(adapter);
+
+        // Set up item click listener to show task details when a task is clicked
+        listViewTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedTaskTitle = taskTitles.get(position);
+
+                // Call a method to show the details of the selected task
+                showTaskDetails(selectedTaskTitle);
+            }
+        });
 
         return view;
+    }
+
+    // Method to add a new task and update the list
+    public void addTask(String taskTitle) {
+        // Add the new task to the list
+        taskTitles.add(taskTitle);
+
+        // Notify the adapter that the data set has changed
+        adapter.notifyDataSetChanged();
+    }
+
+    private void showTaskDetails(String taskTitle) {
+        // Replace this with logic to display the task details fragment
+        // You may want to create a new fragment similar to TaskDetailsFragment
+        // and replace the current fragment with the new one.
+        // Pass the task details (title, description, date) to the new fragment.
     }
 }
