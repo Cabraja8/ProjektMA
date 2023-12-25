@@ -2,7 +2,11 @@ package com.example.projektma;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,18 +15,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projektma.Adapter.ToDoAdapter;
 import com.example.projektma.Model.ToDoModel;
+import com.example.projektma.Utils.DatabaseHandler;
 import com.example.projektma.databinding.ActivityMainBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements  DialogCloseListener {
 
     private RecyclerView taskRecyclerView;
     private ToDoAdapter taskAdapter;
 
+    private FloatingActionButton fab;
+
     private List<ToDoModel> taskList;
+
+    private DatabaseHandler db;
 
 
     @Override
@@ -32,12 +44,14 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
+        db = new DatabaseHandler(this);
+        db.openDatabase();
 
         taskList = new ArrayList<>();
 
         taskRecyclerView = findViewById(R.id.tasksRecyclerView);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        taskAdapter = new ToDoAdapter(this);
+        taskAdapter = new ToDoAdapter(db,this);
         taskRecyclerView.setAdapter(taskAdapter);
 
         ToDoModel task = new ToDoModel();
@@ -50,7 +64,27 @@ public class MainActivity extends AppCompatActivity {
         taskList.add(task);
         taskList.add(task);
         taskAdapter.setTasks(taskList);
-    }
 
+        fab = findViewById(R.id.fab);
+
+        taskList = db.getAllTasks();
+        Collections.reverse(taskList);
+        taskAdapter.setTasks(taskList);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddNewTask.newInstance().show(getSupportFragmentManager(),AddNewTask.TAG);
+            }
+        });
+    }
+    @Override
+    public void handleDialogClose(DialogInterface dialog){
+        taskList = db.getAllTasks();
+        Collections.reverse(taskList);
+        taskAdapter.setTasks(taskList);
+        taskAdapter.notifyDataSetChanged();
+
+    }
 
 }

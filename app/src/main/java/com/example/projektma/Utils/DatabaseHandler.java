@@ -26,7 +26,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private SQLiteDatabase db;
 
-    private DatabaseHandler(Context context){
+    public DatabaseHandler(Context context){
         super(context, NAME, null, VERSION);
     }
     @Override
@@ -69,7 +69,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     do {
                         ToDoModel task = new ToDoModel();
 
-                        // Check if the column index is valid before retrieving the value
+
                         if (idColumnIndex != -1) {
                             task.setId(cur.getInt(idColumnIndex));
                         }
@@ -81,12 +81,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         if (statusColumnIndex != -1) {
                             int statusValue = cur.getInt(statusColumnIndex);
 
-                            // Check if the status value is non-negative
+
                             if (statusValue >= 0) {
                                 task.setStatus(statusValue);
                             } else {
-                                // Handle the case where the status value is not valid
-                                // For example: task.setStatus(DEFAULT_STATUS_VALUE);
+
                             }
                         }
 
@@ -107,7 +106,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void updateStatus(int id, int status){
         ContentValues cv = new ContentValues();
         cv.put(STATUS, status);
-        db.update(TODO_TABLE, cv, ID + "=?", new String[] {String.valueOf(id)})
+        db.update(TODO_TABLE, cv, ID + "=?", new String[] {String.valueOf(id)});
 
     }
     public void updateTask(int id, String task){
