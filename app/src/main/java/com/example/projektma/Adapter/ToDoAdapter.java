@@ -1,5 +1,6 @@
 package com.example.projektma.Adapter;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,13 +31,15 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         this.activity = activity;
     }
 
+    @NonNull
+    @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.task_layout, parent, false);
         return new ViewHolder(itemView);
     }
 
-
+    @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         db.openDatabase();
 
@@ -55,7 +58,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         });
     }
 
-
+    @Override
     public int getItemCount(){
         return toDoList.size();
     }
@@ -68,6 +71,17 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     public void setTasks(List<ToDoModel> toDoList){
         this.toDoList = toDoList;
         notifyDataSetChanged();
+    }
+
+    public Context getContext(){
+        return activity;
+    }
+
+    public void deleteItem(int position){
+        ToDoModel item = toDoList.get(position);
+        db.deleteTask(item.getId());
+        toDoList.remove(position);
+        notifyItemRemoved(position);
     }
 
 

@@ -10,6 +10,7 @@ import android.view.View;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity implements  DialogCloseListener {
@@ -41,8 +43,9 @@ public class MainActivity extends AppCompatActivity implements  DialogCloseListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
         }
         db = new DatabaseHandler(this);
         db.openDatabase();
@@ -54,18 +57,14 @@ public class MainActivity extends AppCompatActivity implements  DialogCloseListe
         taskAdapter = new ToDoAdapter(db,this);
         taskRecyclerView.setAdapter(taskAdapter);
 
-        ToDoModel task = new ToDoModel();
-        task.setTask("This is a Test Task");
-        task.setStatus(0);
-        task.setId(1);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskAdapter.setTasks(taskList);
-
         fab = findViewById(R.id.fab);
+
+        ItemTouchHelper itemTouchHelper = new
+                ItemTouchHelper (new RecyclerItemTouchHelper((taskAdapter)));
+
+        itemTouchHelper.attachToRecyclerView(taskRecyclerView);
+
+
 
         taskList = db.getAllTasks();
         Collections.reverse(taskList);
