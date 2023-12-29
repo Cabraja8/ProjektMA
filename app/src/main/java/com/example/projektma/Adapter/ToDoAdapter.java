@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,8 @@ import com.example.projektma.MainActivity;
 import com.example.projektma.Model.ToDoModel;
 import com.example.projektma.R;
 import com.example.projektma.Utils.DatabaseHandler;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -46,6 +49,9 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         ToDoModel item = toDoList.get(position);
         holder.task.setText(item.getTask());
         holder.task.setChecked(toBoolean(item.getStatus()));
+        holder.date.setText(item.getDate());
+        holder.desc.setText(item.getDesc());
+
         holder.task.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -90,6 +96,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         Bundle bundle = new Bundle();
         bundle.putInt("id",item.getId());
         bundle.putString("task",item.getTask());
+        bundle.putString("description",item.getDesc());
+        bundle.putString("date",item.getDate());
         AddNewTask fragment = new AddNewTask();
         fragment.setArguments(bundle);
         fragment.show(activity.getSupportFragmentManager(),AddNewTask.TAG);
@@ -97,10 +105,14 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
 
     public static class ViewHolder extends  RecyclerView.ViewHolder{
         CheckBox task;
+        TextView date;
+        TextView desc;
 
         ViewHolder(View view){
             super(view);
             task= view.findViewById(R.id.todoCheckBox);
+            date = view.findViewById(R.id.dateTextView);
+            desc = view.findViewById(R.id.descriptionTextView);
         }
     }
 

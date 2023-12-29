@@ -2,7 +2,7 @@ package com.example.projektma.Model;
 
 public class ToDoModel {
     private int id,status;
-    private String task;
+    private String task,desc,date;
 
 
     public int getId() {
@@ -17,8 +17,6 @@ public class ToDoModel {
         return status;
     }
 
-
-
     public void setStatus(int status) {
         this.status = status;
     }
@@ -30,4 +28,18 @@ public class ToDoModel {
     public void setTask(String task) {
         this.task = task;
     }
+
+    public String getDesc(){
+        return desc;
+    }
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+    public  String getDate(){
+        return date;
+    }
+    public void setDate(String date){
+        this.date = date;
+    }
+
 }

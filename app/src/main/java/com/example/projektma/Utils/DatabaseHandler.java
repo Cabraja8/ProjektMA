@@ -13,13 +13,19 @@ import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
     private static final String NAME = "toDoListDatabase";
     private static final String TODO_TABLE = "todo";
     private static final String ID = "id";
     private static final String TASK = "task";
+    private static final String DESCRIPTION = "description";
+    private static final String DATE = "date";
     private static final String STATUS = "status";
-    private static final String CREATE_TODO_TABLE = "CREATE TABLE " + TODO_TABLE + "(" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TASK + " TEXT, "
+    private static final String CREATE_TODO_TABLE = "CREATE TABLE " + TODO_TABLE + "("
+            + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + TASK + " TEXT, "
+            + DESCRIPTION + " TEXT, "
+            + DATE + " TEXT, "
             + STATUS + " INTEGER)";
 
     private SQLiteDatabase db;
@@ -30,15 +36,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL("DROP TABLE IF EXISTS " + TODO_TABLE);
         db.execSQL(CREATE_TODO_TABLE);
+
+
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TODO_TABLE);
+
         // Create tables again
         onCreate(db);
+
+
     }
 
     public void openDatabase() {
@@ -48,9 +62,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void insertTask(ToDoModel task){
         ContentValues cv = new ContentValues();
         cv.put(TASK, task.getTask());
+        cv.put(DESCRIPTION, task.getDesc());
+        cv.put(DATE, task.getDate());
         cv.put(STATUS, 0);
         db.insert(TODO_TABLE, null, cv);
     }
+
+
+
 
     public List<ToDoModel> getAllTasks(){
         List<ToDoModel> taskList = new ArrayList<>();
@@ -64,6 +83,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         ToDoModel task = new ToDoModel();
                         int idIndex = cur.getColumnIndex(ID);
                         int taskIndex = cur.getColumnIndex(TASK);
+                        int DescIndex = cur.getColumnIndex(DESCRIPTION);
+                        int DateIndex = cur.getColumnIndex(DATE);
                         int statusIndex = cur.getColumnIndex(STATUS);
 
                         if (idIndex >= 0) {
@@ -72,6 +93,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         }
                         if (taskIndex >= 0) {
                             task.setTask(cur.getString(taskIndex));
+                            task.setDesc(cur.getString(DescIndex));
+                            task.setDate(cur.getString(DateIndex));
                         }
                         if (statusIndex >= 0) {
                             task.setStatus(cur.getInt(statusIndex));
@@ -96,9 +119,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
     }
 
-    public void updateTask(int id, String task) {
+    public void updateTask(int id, String task, String desc, String date) {
         ContentValues cv = new ContentValues();
         cv.put(TASK, task);
+        cv.put(DESCRIPTION, desc);
+        cv.put(DATE, date);
         db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
     }
 

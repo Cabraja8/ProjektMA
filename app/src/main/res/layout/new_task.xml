@@ -1,27 +1,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:padding="60dp">
 
     <EditText
         android:id="@+id/newTaskText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="293dp"
+        android:layout_height="46dp"
         android:background="@null"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:hint="New Task" />
+        android:hint="New Task"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <EditText
+        android:id="@+id/newTaskDescription"
+        android:layout_width="300dp"
+        android:layout_height="78dp"
+        android:layout_below="@id/newTaskText"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:hint="Task Description"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <Button
+        android:id="@+id/buttonPickDueDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/newTaskDescription"
+        android:text="Select Date"
+        android:onClick="showDatePickerDialog"
+        />
+
+
+    <TextView
+        android:id="@+id/textSelectedDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newTaskDescription"
+        android:layout_marginTop="1dp"
+        android:layout_centerInParent="true"
+        android:text="Selected Date: None" />
 
     <Button
         android:id="@+id/newTaskButton"
-        android:layout_width="wrap_content"
+        android:layout_width="127dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/newTaskText"
-        android:textSize="16sp"
+        android:layout_below="@+id/newTaskDescription"
+        android:layout_marginTop="20dp"
         android:layout_alignParentEnd="true"
         android:background="@android:color/transparent"
         android:text="Save"
         android:textAllCaps="false"
-        android:textColor="@android:color/darker_gray" />
-
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp" />
 </RelativeLayout>
-
