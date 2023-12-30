@@ -8,4 +8,4 @@ To Do Aplikacija omogućuje vam kreiranje vlastitih zadataka s dodanom opisom i 
 
 **Mentor:** izv. prof. dr. sc. Siniša Sovilj
 
-**Predmet:** Mobilne Aplikacije
+**Kolegij:** Mobilne Aplikacije
