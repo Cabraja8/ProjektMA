@@ -2,11 +2,13 @@ package com.example.projektma.Adapter;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,13 +28,13 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
 
     public List<ToDoModel> toDoList;
     private MainActivity activity;
-
     private DatabaseHandler db;
 
     public ToDoAdapter(DatabaseHandler db,MainActivity activity){
         this.db = db;
         this.activity = activity;
     }
+
 
     @NonNull
     @Override
@@ -65,9 +67,20 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
     }
 
     @Override
-    public int getItemCount(){
+    public int getItemCount() {
+        int itemCount = toDoList.size();
 
-        return toDoList.size();
+        Log.d("TaskLIST TAG", "Task List Size: " + itemCount);
+
+        if (itemCount == 0) {
+            activity.isEmpty = true;
+            activity.enableNoTasksLayout();  // Enable the LinearLayout
+        } else {
+            activity.isEmpty = false;
+            activity.disableNoTasksLayout(); // Disable the LinearLayout
+        }
+
+        return itemCount;
     }
 
 

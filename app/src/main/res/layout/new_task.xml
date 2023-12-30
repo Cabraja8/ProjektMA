@@ -7,8 +7,9 @@
         android:id="@+id/newTaskText"
         android:layout_width="293dp"
         android:layout_height="46dp"
-        android:background="@null"
+
         android:hint="New Task"
+        android:background="@drawable/border"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <EditText
@@ -17,7 +18,7 @@
         android:layout_height="78dp"
         android:layout_below="@id/newTaskText"
         android:layout_marginTop="20dp"
-        android:background="@null"
+        android:background="@drawable/border"
         android:hint="Task Description"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -37,12 +38,15 @@
         android:id="@+id/textSelectedDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_below="@id/newTaskDescription"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         android:layout_centerInParent="true"
         android:text="Selected Date: None" />
 
     <Button
+
         android:id="@+id/newTaskButton"
         android:layout_width="127dp"
         android:layout_height="wrap_content"

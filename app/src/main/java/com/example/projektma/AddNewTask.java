@@ -168,7 +168,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
     }
 
     private void showDatePickerDialog() {
-        // Get the current date
+
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);

@@ -5,8 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.view.View;
+import android.widget.LinearLayout;
 
+import com.example.projektma.MainActivity;
 import com.example.projektma.Model.ToDoModel;
+import com.example.projektma.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +32,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             + DATE + " TEXT, "
             + STATUS + " INTEGER)";
 
+    private MainActivity mainActivity;
+
+
     private SQLiteDatabase db;
 
     public DatabaseHandler(Context context) {
         super(context, NAME, null, VERSION);
+    }
+
+    public DatabaseHandler(Context context, MainActivity activity) {
+        super(context, NAME, null, VERSION);
+        this.mainActivity = activity;
     }
 
     @Override
@@ -39,7 +51,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         db.execSQL("DROP TABLE IF EXISTS " + TODO_TABLE);
         db.execSQL(CREATE_TODO_TABLE);
-
 
 
     }
@@ -110,6 +121,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             assert cur != null;
             cur.close();
         }
+
+
+
         return taskList;
     }
 

@@ -36,18 +36,23 @@ public class MainActivity extends AppCompatActivity implements  DialogCloseListe
 
     private FloatingActionButton fab;
 
-    private LinearLayout noTasks;
+    private LinearLayout noTaskLayout;
 
     private List<ToDoModel> taskList;
 
     private DatabaseHandler db;
+
+    public boolean isEmpty ;
+
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        noTasks = findViewById(R.id.NoTask);
+        noTaskLayout = findViewById(R.id.NoTask);
 
 
 
@@ -60,7 +65,9 @@ public class MainActivity extends AppCompatActivity implements  DialogCloseListe
 
         taskList = new ArrayList<>();
 
-        UpdatedList();
+
+
+     
 
         taskRecyclerView = findViewById(R.id.tasksRecyclerView);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -75,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements  DialogCloseListe
         itemTouchHelper.attachToRecyclerView(taskRecyclerView);
 
         taskList = db.getAllTasks();
+
         Collections.reverse(taskList);
         taskAdapter.setTasks(taskList);
 
@@ -82,17 +90,30 @@ public class MainActivity extends AppCompatActivity implements  DialogCloseListe
             @Override
             public void onClick(View v) {
                 AddNewTask.newInstance().show(getSupportFragmentManager(),AddNewTask.TAG);
-                UpdatedList();
+
             }
         });
+
     }
-    public void UpdatedList(){
-        if(taskList.size() > 0){
-            Log.d("TaskListSize", "Size: " + taskList.size());
-            noTasks.setVisibility(View.GONE);
-        }else{
-            noTasks.setVisibility(View.VISIBLE);
-            Log.d("TaskListSize", "Size: " + taskList.size());
+    public void enableNoTasksLayout() {
+        if (noTaskLayout != null) {
+            noTaskLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void disableNoTasksLayout() {
+        if (noTaskLayout != null) {
+            noTaskLayout.setVisibility(View.GONE);
+        }
+    }
+
+    private void checkNoTasksVisibility() {
+        if (noTaskLayout != null) {
+            if (taskAdapter.getItemCount() == 0) {
+                enableNoTasksLayout();
+            } else {
+                disableNoTasksLayout();
+            }
         }
     }
     @Override
