@@ -98,10 +98,17 @@ public class AddNewTask extends BottomSheetDialogFragment {
         if(bundle != null){
             isUpdate = true;
             String task = bundle.getString("task");
+            String desc = bundle.getString("description");
+            String date = bundle.getString("date");
+            selectedDate = bundle.getString("date");
+
             newTaskText.setText(task);
+            taskDesc.setText(desc);
+            textSelectedDate.setText("Selected date: " + date);
+
             assert task != null;
             if(task.length()>0)
-                newTaskSaveButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.blueColor));
+                newTaskSaveButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.tealColor));
         }
 
         db = new DatabaseHandler(getActivity());
@@ -120,7 +127,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 }
                 else{
                     newTaskSaveButton.setEnabled(true);
-                    newTaskSaveButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.purpleColor));
+                    newTaskSaveButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.tealColor));
                 }
             }
 

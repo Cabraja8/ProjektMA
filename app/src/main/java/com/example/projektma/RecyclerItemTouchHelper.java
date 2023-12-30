@@ -18,6 +18,8 @@ import com.example.projektma.Adapter.ToDoAdapter;
 public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
 
     private ToDoAdapter adapter;
+
+
     public RecyclerItemTouchHelper(ToDoAdapter adapter) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;
@@ -38,6 +40,7 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     adapter.deleteItem(position);
+
                 }
             });
             builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -57,42 +60,41 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 
-
         Drawable icon;
         ColorDrawable background;
 
         View itemView = viewHolder.itemView;
         int backgroundCornerOffset = 20;
 
-        if(dX >0) {
-            icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.baseline_app_registration_24);
-            background = new ColorDrawable(ContextCompat.getColor(adapter.getContext(), R.color.blueColor));
+        int iconSize = (int) (itemView.getHeight() * 0.7);
 
-        }else{
-            icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.baseline_auto_delete_24);
+        if (dX > 0) {
+            icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.baseline_app_registration_24);
+            background = new ColorDrawable(ContextCompat.getColor(adapter.getContext(), R.color.tealColor));
+        } else {
+            icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.baseline_delete_24);
             background = new ColorDrawable(Color.RED);
         }
-        int iconMargin = (itemView.getHeight() - icon.getIntrinsicHeight()) / 2;
-        int iconTop = itemView.getTop() + (itemView.getHeight() - icon.getIntrinsicHeight() / 2);
-        int iconBottom = iconTop + icon.getIntrinsicHeight();
 
-        if(dX > 0){
+        int iconMargin = (itemView.getHeight() - iconSize) / 2;
+        int iconTop = itemView.getTop() + iconMargin;
+        int iconBottom = iconTop + iconSize;
 
+        if (dX > 0) {
             int iconLeft = itemView.getLeft() + iconMargin;
-            int iconRight = itemView.getLeft() + iconMargin + icon.getIntrinsicWidth();
-            icon.setBounds(iconLeft,iconTop,iconRight,iconBottom);
-            background.setBounds(itemView.getLeft(), itemView.getTop(),itemView.getLeft() + ((int)dX) + backgroundCornerOffset, itemView.getBottom());
-
-        }else if (dX < 0){
-            int iconLeft = itemView.getRight() - iconMargin - icon.getIntrinsicWidth();
+            int iconRight = iconLeft + iconSize;
+            icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
+            background.setBounds(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + ((int) dX) + backgroundCornerOffset, itemView.getBottom());
+        } else if (dX < 0) {
             int iconRight = itemView.getRight() - iconMargin;
-            icon.setBounds(iconLeft,iconTop,iconRight,iconBottom);
-            background.setBounds(itemView.getRight() + ((int)dX) - backgroundCornerOffset, itemView.getTop(),itemView.getRight(), itemView.getBottom()) ;
-        }else{
-            background.setBounds(0,0,0,0);
+            int iconLeft = iconRight - iconSize;
+            icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
+            background.setBounds(itemView.getRight() + ((int) dX) - backgroundCornerOffset, itemView.getTop(), itemView.getRight(), itemView.getBottom());
+        } else {
+            background.setBounds(0, 0, 0, 0);
         }
+
         background.draw(c);
         icon.draw(c);
-
     }
 }

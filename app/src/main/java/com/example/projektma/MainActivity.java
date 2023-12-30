@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements  DialogCloseListe
 
     private FloatingActionButton fab;
 
+    private LinearLayout noTasks;
+
     private List<ToDoModel> taskList;
 
     private DatabaseHandler db;
@@ -43,6 +47,10 @@ public class MainActivity extends AppCompatActivity implements  DialogCloseListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        noTasks = findViewById(R.id.NoTask);
+
+
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
@@ -51,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements  DialogCloseListe
         db.openDatabase();
 
         taskList = new ArrayList<>();
+
+        UpdatedList();
 
         taskRecyclerView = findViewById(R.id.tasksRecyclerView);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -72,8 +82,18 @@ public class MainActivity extends AppCompatActivity implements  DialogCloseListe
             @Override
             public void onClick(View v) {
                 AddNewTask.newInstance().show(getSupportFragmentManager(),AddNewTask.TAG);
+                UpdatedList();
             }
         });
+    }
+    public void UpdatedList(){
+        if(taskList.size() > 0){
+            Log.d("TaskListSize", "Size: " + taskList.size());
+            noTasks.setVisibility(View.GONE);
+        }else{
+            noTasks.setVisibility(View.VISIBLE);
+            Log.d("TaskListSize", "Size: " + taskList.size());
+        }
     }
     @Override
     public void handleDialogClose(DialogInterface dialog){

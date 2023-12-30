@@ -9,6 +9,7 @@
     android:layout_marginVertical="8dp">
 
     <RelativeLayout
+        android:background="@drawable/border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
@@ -21,7 +22,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:paddingStart="8dp"
-            android:buttonTint="@android:color/holo_green_dark"
+            android:buttonTint="@color/tealColor"
             android:text="Shopping list"
             android:layout_below="@id/descriptionTextView"
             android:layout_marginTop="8dp"/>

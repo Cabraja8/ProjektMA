@@ -15,6 +15,25 @@
         android:layout_marginTop="16dp"
         android:textSize="32sp"
         android:text="Tasks" />
+    <LinearLayout
+        android:id="@+id/NoTask"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No current tasks found."
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:padding="16dp"/>
+
+        <!-- You can add more UI elements or customize the message further if needed -->
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasksRecyclerView"
@@ -25,14 +44,18 @@
         android:nestedScrollingEnabled="true" />
 
 
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="32dp"
-        android:backgroundTint="@android:color/holo_green_dark"
-        android:src="@drawable/ic_add" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/tealColor"
+        android:src="@drawable/baseline_add_24" />
 
 </RelativeLayout>

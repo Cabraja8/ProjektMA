@@ -24,7 +24,7 @@ import java.util.List;
 
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
 
-    private List<ToDoModel> toDoList;
+    public List<ToDoModel> toDoList;
     private MainActivity activity;
 
     private DatabaseHandler db;
@@ -66,6 +66,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
 
     @Override
     public int getItemCount(){
+
         return toDoList.size();
     }
 
